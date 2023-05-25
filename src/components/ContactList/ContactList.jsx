@@ -1,6 +1,5 @@
 import React from 'react';
 import css from './ContactList.module.css';
-import { PropTypes } from 'prop-types';
 import { useSelector } from 'react-redux';
 
 import ContactItem from 'components/ContactItem/ContactItem';
