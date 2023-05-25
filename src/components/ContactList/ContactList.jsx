@@ -7,15 +7,20 @@ import ContactItem from 'components/ContactItem/ContactItem';
 
 export default function ContactList() {
   const contacts = useSelector(state => state.contacts);
+
+  const filter = useSelector(state => state.filter);
+  const getFilteredContacts = () => {
+    return contacts.filter(({ name }) => {
+      return name.toLowerCase().includes(filter.toLowerCase());
+    });
+  };
   return (
     <>
       <ul className={css.list}>
-        {contacts.map(({ id, name, number }) => (
+        {getFilteredContacts().map(({ id, name, number }) => (
           <ContactItem key={id} name={name} number={number} id={id} />
         ))}
       </ul>
     </>
   );
 }
-
-

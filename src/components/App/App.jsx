@@ -60,9 +60,9 @@ const App = () => {
       <ContactForm />
 
       <h2 className={css.title}>Contacts</h2>
-      {/* <Filter /> */}
+      <Filter />
 
-      {/* <ContactList /> */}
+      <ContactList />
     </div>
   );
 };

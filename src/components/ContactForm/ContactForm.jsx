@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import css from './ContactForm.module.css';
 import shortid from 'shortid';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice';
 
 const ContactForm = () => {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+  const contacts = useSelector(state => state.contacts);
   const dispatch = useDispatch();
   const handlerInput = event => {
     switch (event.target.name) {
@@ -25,6 +26,14 @@ const ContactForm = () => {
 
   const handlerSubmit = event => {
     event.preventDefault();
+    if (
+      contacts.find(({ name: currentName }) => {
+        return name === currentName;
+      })
+    ) {
+      alert('Contact with this name was alredy added');
+      return;
+    }
 
     const contact = {
       id: shortid.generate(),
